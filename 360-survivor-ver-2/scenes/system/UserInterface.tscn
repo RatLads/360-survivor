@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy7kyqxv4255v"]
+
+[ext_resource type="PackedScene" uid="uid://cx4s1t17mcui2" path="res://scenes/ui/reticle_draw.tscn" id="1_hpdcm"]
+
+[node name="UserInterface" type="CanvasLayer"]
+
+[node name="Reticle" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ReticleDraw" parent="Reticle" instance=ExtResource("1_hpdcm")]
+layout_mode = 2
+radius = 15.135
+thickness = 0.285
+color = Color(0.9607843, 0.9607843, 0.9607843, 1)
+gap_angle = 29.5
+segments = 117

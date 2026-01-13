@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://4514ucls2li4"]
+
+[ext_resource type="Script" uid="uid://xmq42hni2v8l" path="res://assets/scripts/player/player_controller.gd" id="1_0cfoe"]
+[ext_resource type="Script" uid="uid://btdyfabrra67p" path="res://assets/scripts/player/components/mouse_capture.gd" id="1_4q5nu"]
+[ext_resource type="Script" uid="uid://c6vepn0liv5aa" path="res://assets/scripts/player/camera_controller.gd" id="2_0nonk"]
+[ext_resource type="Script" uid="uid://p6lmirwokr4j" path="res://assets/scripts/player/components/interaction_raycast.gd" id="3_5afdu"]
+[ext_resource type="Script" uid="uid://by0e1g2wq0mrq" path="res://assets/scripts/player/components/state_machine.gd" id="4_5tt2p"]
+[ext_resource type="Script" uid="uid://bswoxuvyoak11" path="res://assets/scripts/player/base_state.gd" id="5_5afdu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ev2gv"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4q5nu"]
+
+[node name="PlayerController" type="CharacterBody3D"]
+script = ExtResource("1_0cfoe")
+debug = true
+
+[node name="PlayerCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ev2gv")
+
+[node name="PlayerMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_4q5nu")
+
+[node name="CameraController" type="Node3D" parent="." node_paths=PackedStringArray("player_controller", "component_mouse_capture")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31291705, -0.44291666)
+script = ExtResource("2_0nonk")
+debug = true
+player_controller = NodePath("..")
+component_mouse_capture = NodePath("../Components/MouseCapture")
+
+[node name="Camera3D" type="Camera3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44172037, 0)
+
+[node name="InteractionRaycast" type="RayCast3D" parent="CameraController/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+script = ExtResource("3_5afdu")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="MouseCapture" type="Node" parent="Components"]
+script = ExtResource("1_4q5nu")
+debug = true
+
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("player_controller")]
+script = ExtResource("4_5tt2p")
+debug = true
+player_controller = NodePath("..")
+metadata/_custom_type_script = "uid://by0e1g2wq0mrq"
+
+[node name="PlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("5_5afdu")
+debug = true
+metadata/_custom_type_script = "uid://bswoxuvyoak11"

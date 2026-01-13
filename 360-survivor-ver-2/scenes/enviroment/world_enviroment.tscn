@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqiafj8tly4f4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cvs0n"]
+sky_top_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_x4c3s"]
+sky_material = SubResource("ProceduralSkyMaterial_cvs0n")
+
+[sub_resource type="Environment" id="Environment_oh720"]
+background_mode = 2
+sky = SubResource("Sky_x4c3s")
+fog_enabled = true
+fog_light_energy = 0.19
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_qfcg0"]
+
+[sub_resource type="Compositor" id="Compositor_ilpwp"]
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_oh720")
+camera_attributes = SubResource("CameraAttributesPractical_qfcg0")
+compositor = SubResource("Compositor_ilpwp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8145916, 0.5800349, 0, -0.5800349, 0.8145916, 0, 4, 0)
