@@ -21,12 +21,12 @@ shape = SubResource("CapsuleShape3D_ev2gv")
 [node name="PlayerMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_4q5nu")
 
-[node name="CameraRig" type="Node3D" parent="." node_paths=PackedStringArray("player_controller")]
+[node name="CameraRig" type="Node3D" parent="." node_paths=PackedStringArray("player_controller", "component_mouse_capture")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31291705, -0.44291666)
 script = ExtResource("2_0nonk")
 debug = true
 player_controller = NodePath("..")
-snap_duration = 0.3
+component_mouse_capture = NodePath("../Components/MouseCapture")
 
 [node name="CameraPivot" type="Node3D" parent="CameraRig"]
 script = ExtResource("3_m7hbg")
