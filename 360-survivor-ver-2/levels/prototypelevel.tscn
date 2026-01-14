@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=4 uid="uid://bktro5epg148i"]
+[gd_scene load_steps=18 format=4 uid="uid://bktro5epg148i"]
 
 [ext_resource type="Texture2D" uid="uid://mjxqdm0cxjq5" path="res://assets/textures/level/Horror_Floor_09-128x128.png" id="1_2kiik"]
 [ext_resource type="PackedScene" uid="uid://dqiafj8tly4f4" path="res://scenes/enviroment/world_enviroment.tscn" id="1_n47na"]
 [ext_resource type="PackedScene" uid="uid://4514ucls2li4" path="res://scenes/player/player_controller.tscn" id="2_5ywih"]
 [ext_resource type="Texture2D" uid="uid://efipcnjsxoov" path="res://assets/textures/level/Horror_Floor_06-128x128.png" id="2_oasrg"]
 [ext_resource type="Texture2D" uid="uid://dnecv8mlwmvtg" path="res://assets/textures/level/concrete_dirty_2.jpg" id="3_ypnko"]
+[ext_resource type="PackedScene" uid="uid://55boocixc4e5" path="res://scenes/system/spawner.tscn" id="6_oasrg"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ee6ph"]
 
@@ -97,6 +98,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_sivb2")
 
 [node name="Ceiling" type="MeshInstance3D" parent="Geometry"]
 transform = Transform3D(2.3030717, -2.0134092e-07, 7.927224, -7.21675e-07, -8.255, 0, 7.927224, -6.930199e-07, -2.3030717, 0, 3.1772094, 0)
+visible = false
 mesh = SubResource("PlaneMesh_ee6ph")
 surface_material_override/0 = SubResource("StandardMaterial3D_tiisa")
 
@@ -115,4 +117,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_oor3l")
 [node name="PlayerController" parent="." instance=ExtResource("2_5ywih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="WorldEnvironment" parent="PlayerController" instance=ExtResource("1_n47na")]
+[node name="WorldEnvironment" parent="." instance=ExtResource("1_n47na")]
+
+[node name="Spawner" parent="." instance=ExtResource("6_oasrg")]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, -0.24086213, 1.2655067, -5.8225126)

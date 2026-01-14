@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://55boocixc4e5"]
+
+[ext_resource type="Script" uid="uid://bmcxajvvpf0uw" path="res://assets/scripts/system/spawner.gd" id="1_1xwae"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1xwae"]
+
+[node name="Spawner" type="Node3D"]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 0, 0, 0)
+script = ExtResource("1_1xwae")
+
+[node name="spawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_1xwae")
