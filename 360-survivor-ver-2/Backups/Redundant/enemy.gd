@@ -4,7 +4,7 @@ extends CharacterBody3D
 @export var speed: int = 1
 @export var health: int =100
 @export var debug: bool = false
-
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var altTexture = preload("res://assets/textures/enemies/sillyrat.jpeg")
 
