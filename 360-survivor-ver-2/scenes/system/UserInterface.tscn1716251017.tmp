@@ -19,6 +19,4 @@ color = Color(0, 0.9607843, 0.9607843, 1)
 gap_angle = 29.5
 segments = 117
 dot_color = Color(1, 0, 0, 1)
-base_sensitivity = null
-edge_slow_radius = null
-min_speed_multiplier = null
+sensitivity = null
