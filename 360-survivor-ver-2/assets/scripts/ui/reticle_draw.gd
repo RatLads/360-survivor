@@ -9,6 +9,11 @@ extends Control
 @export var dot_radius: float = 1.0 : set = set_dot_radius
 @export var dot_color: Color = Color.WHITE : set = set_dot_color
 
+
+@export var base_sensitivity: float = 1.0
+@export var edge_slow_radius: float = 200.0
+@export var min_speed_multiplier: float = 0.2
+
 func _draw():
 	draw_circle_crosshair()
 	draw_circle(Vector2(0,0),dot_radius, dot_color)
@@ -78,3 +83,32 @@ func set_dot_color(new_dot_color):
 	dot_color = new_dot_color
 	update_crosshair()
 	
+
+var velocity: Vector2 = Vector2.ZERO
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		var mouse_delta: Vector2 = event.relative
+		move_reticle(mouse_delta)
+
+func move_reticle(mouse_delta: Vector2) -> void:
+	var viewport_size = get_viewport_rect().size
+
+	# Distance to nearest edge
+	var dist_x = min(global_position.x, viewport_size.x - global_position.x)
+	var dist_y = min(global_position.y, viewport_size.y - global_position.y)
+	var dist_to_edge = min(dist_x, dist_y)
+
+	# Slow down near edge
+	var t = clamp(dist_to_edge / edge_slow_radius, 0.0, 1.0)
+	var speed_multiplier = lerp(min_speed_multiplier, 1.0, t)
+
+	velocity = mouse_delta * base_sensitivity * speed_multiplier
+	global_position += velocity
+
+	# Clamp inside viewport
+	global_position.x = clamp(global_position.x, 0, viewport_size.x)
+	global_position.y = clamp(global_position.y, 0, viewport_size.y)

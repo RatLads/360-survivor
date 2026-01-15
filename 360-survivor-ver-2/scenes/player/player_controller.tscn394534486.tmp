@@ -27,9 +27,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31291705, -0.44291666)
 script = ExtResource("2_0nonk")
 debug = true
 player_controller = NodePath("..")
-snap_angle_degrees = 30.0
 snap_duration = 0.3
-lean_degrees = 10.0
 
 [node name="CameraPivot" type="Node3D" parent="CameraRig"]
 script = ExtResource("3_m7hbg")
